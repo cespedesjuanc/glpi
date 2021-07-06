@@ -46,6 +46,7 @@
    } only %}
 
    <script>
+   $(function () {
       $('#home-dashboard{{ rand }} .lazy-widget').each(function() {
          const this_obj = $(this);
          const params = {
@@ -62,5 +63,6 @@
                $('#home-dashboard{{ rand }} .masonry_grid').trigger("layout:refresh");
             });
       });
+   });
    </script>
 </div>

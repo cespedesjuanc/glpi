@@ -1448,3 +1448,8 @@ $(
       }, 50);
    }
 );
+
+// case insentive :contains selector -> ":icontains"
+jQuery.expr.filters.icontains = function(elem, i, m) {
+   return (elem.innerText || elem.textContent || "").toLowerCase().indexOf(m[3].toLowerCase()) > -1;
+};
