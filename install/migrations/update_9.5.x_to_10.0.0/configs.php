@@ -48,4 +48,8 @@ $migration->addField('glpi_users', 'fold_search', 'tinyint DEFAULT NULL', ['afte
 
 $migration->displayMessage('Add saved searches pin config / user preference');
 Config::setConfigurationValues('core', ['savedsearches_pinned' => 0]);
-$migration->addField('glpi_users', 'savedsearches_pinned', 'text', ['after' => 'fold_menu', 'nodefault' => true]);
+$migration->addField('glpi_users', 'savedsearches_pinned', 'text', ['after' => 'fold_search', 'nodefault' => true]);
+
+$migration->displayMessage('Add tinymce toolbar configuration / user preference');
+Config::setConfigurationValues('core', ['richtext_layout' => 'inline']);
+$migration->addField('glpi_users', 'richtext_layout', 'char(20) DEFAULT NULL', ['after' => 'savedsearches_pinned']);

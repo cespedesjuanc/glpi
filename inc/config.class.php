@@ -1280,7 +1280,19 @@ class Config extends CommonDBTM {
          });
       ");
       echo "</td>";
-      echo "<td></td>";
+
+      echo "<td><label for='dropdown_richtext_layout$rand'>" . __('Rich text field layout') . "</label></td>";
+      echo "<td>";
+      Dropdown::showFromArray(
+         'richtext_layout',
+         [
+            'inline'  => __('Inline (no toolbars)'),
+            'classic' => __('Classic (toolbar on top)'),
+         ], [
+            'value' => $data["richtext_layout"],
+         ]
+      );
+      echo "</td>";
       echo "</tr>";
 
       echo "<tr class='tab_bg_2'><td><label for='dropdown_highcontrast_css$rand'>".__('Enable high contrast')."</label></td>";

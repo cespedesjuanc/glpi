@@ -3687,6 +3687,7 @@ JS;
       $js = <<<JS
          $(function() {
             var is_dark = $('html').css('--is-dark').trim() === 'true';
+            var richtext_layout = "{$_SESSION['glpirichtext_layout']}";
 
             // init editor
             tinyMCE.init({
@@ -3712,9 +3713,15 @@ JS;
 
                // inline toolbar configuration
                menubar: false,
-               toolbar: false,
-               quickbars_insert_toolbar: 'quicktable quickimage quicklink | bullist numlist | outdent indent',
-               quickbars_selection_toolbar: 'bold italic | styleselect | forecolor backcolor ',
+               toolbar: richtext_layout == 'classic'
+                  ? 'styleselect | bold italic | forecolor backcolor | bullist numlist outdent indent | table link image | code fullscreen'
+                  : false,
+               quickbars_insert_toolbar: richtext_layout == 'inline'
+                  ? 'quicktable quickimage quicklink | bullist numlist | outdent indent'
+                  : false,
+               quickbars_selection_toolbar: richtext_layout == 'inline'
+                  ? 'bold italic | styleselect | forecolor backcolor '
+                  : false,
                contextmenu: 'table image link | undo redo | code fullscreen',
 
                // Content settings
